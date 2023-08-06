@@ -42,19 +42,21 @@ body {
     height: 90%;
     width: 40%;
 
+    /* Section with all the comments */
     section.comments {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
 
+      /* One comment */
       div.comments {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         height: 100%;
         width: 100%;
-        background-color: red;
+        margin-bottom: 1.15rem;
 
         div.comment {
           display: flex;
