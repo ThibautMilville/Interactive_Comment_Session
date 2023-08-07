@@ -34,31 +34,34 @@ body section.main {
   justify-content: center;
   height: 90%;
   width: 40%;
-  /* Section with all the comments */
+  /* Section with all the comments and their replies */
 }
 body section.main section.comments {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* One comment */
+  /* One comment and its replies */
 }
-body section.main section.comments div.comments {
+body section.main section.comments div[class^=comments] {
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   justify-content: flex-start;
   height: 100%;
   width: 100%;
-  margin-bottom: 1.15rem;
+  /* Comment */
+  /* Reply comment */
 }
-body section.main section.comments div.comments div.comment {
+body section.main section.comments div[class^=comments] div.comment {
   display: flex;
   height: auto;
   background-color: var(--white);
   padding: 1.6rem 1.4rem;
   border-radius: 6px;
+  margin-bottom: 1.15rem;
 }
-body section.main section.comments div.comments div.comment .likes {
+body section.main section.comments div[class^=comments] div.comment .likes {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,21 +73,21 @@ body section.main section.comments div.comments div.comment .likes {
   margin-right: 1.6rem;
   border-radius: 6px;
 }
-body section.main section.comments div.comments div.comment .likes img {
+body section.main section.comments div[class^=comments] div.comment .likes img {
   width: 0.75rem;
   padding: 2px 0;
   cursor: pointer;
 }
-body section.main section.comments div.comments div.comment .likes p {
+body section.main section.comments div[class^=comments] div.comment .likes p {
   font: 500 1rem "Rubik", sans-serif;
   color: var(--moderate-blue);
 }
-body section.main section.comments div.comments div.comment .comment-content {
+body section.main section.comments div[class^=comments] div.comment .comment-content {
   display: flex;
   flex-direction: column;
   /* Superior bar with author information and reply function */
 }
-body section.main section.comments div.comments div.comment .comment-content .post-info {
+body section.main section.comments div[class^=comments] div.comment .comment-content .post-info {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -92,37 +95,124 @@ body section.main section.comments div.comments div.comment .comment-content .po
   margin-bottom: 1rem;
   /* Reply text + icon */
 }
-body section.main section.comments div.comments div.comment .comment-content .post-info .left {
+body section.main section.comments div[class^=comments] div.comment .comment-content .post-info .left {
   display: flex;
   align-items: center;
 }
-body section.main section.comments div.comments div.comment .comment-content .post-info .left img {
+body section.main section.comments div[class^=comments] div.comment .comment-content .post-info .left img {
   width: 28px;
   margin-right: 0.6rem;
   cursor: pointer;
 }
-body section.main section.comments div.comments div.comment .comment-content .post-info .left p.profile-name {
+body section.main section.comments div[class^=comments] div.comment .comment-content .post-info .left p.profile-name {
   font: 700 1rem "Rubik", sans-serif;
   color: var(--dark-blue);
   margin-right: 0.8rem;
   cursor: pointer;
 }
-body section.main section.comments div.comments div.comment .comment-content .post-info .left p.post-date {
+body section.main section.comments div[class^=comments] div.comment .comment-content .post-info .left p.post-date {
   font: 400 1rem "Rubik", sans-serif;
   color: var(--grayish-blue);
 }
-body section.main section.comments div.comments div.comment .comment-content .post-info p.reply {
+body section.main section.comments div[class^=comments] div.comment .comment-content .post-info p.reply {
   display: flex;
   align-items: center;
   font: 500 1rem "Rubik", sans-serif;
   color: var(--moderate-blue);
   cursor: pointer;
 }
-body section.main section.comments div.comments div.comment .comment-content .post-info p.reply img {
+body section.main section.comments div[class^=comments] div.comment .comment-content .post-info p.reply img {
   width: 16px;
   margin-right: 0.4rem;
 }
-body section.main section.comments div.comments div.comment .comment-content p.content {
+body section.main section.comments div[class^=comments] div.comment .comment-content p.content {
+  font: 400 1.025rem "Rubik", sans-serif;
+  color: var(--grayish-blue);
+  line-height: 1.35rem;
+}
+body section.main section.comments div[class^=comments] div.replies {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  height: auto;
+  border-left: 2px solid var(--light-gray);
+  margin: 0 0 1.15rem 0;
+}
+body section.main section.comments div[class^=comments] div.replies div.reply {
+  display: flex;
+  background-color: var(--white);
+  padding: 1.6rem 1.4rem;
+  border-radius: 6px;
+  margin: 0 0 0 5%;
+}
+body section.main section.comments div[class^=comments] div.replies div.reply:not(:last-child) {
+  margin-bottom: 1.15rem;
+}
+body section.main section.comments div[class^=comments] div.replies div.reply .likes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 90%;
+  width: 36px;
+  background-color: var(--very-light-gray);
+  padding: 0.7rem 0.8rem;
+  margin-right: 1.6rem;
+  border-radius: 6px;
+}
+body section.main section.comments div[class^=comments] div.replies div.reply .likes img {
+  width: 0.75rem;
+  padding: 2px 0;
+  cursor: pointer;
+}
+body section.main section.comments div[class^=comments] div.replies div.reply .likes p {
+  font: 500 1rem "Rubik", sans-serif;
+  color: var(--moderate-blue);
+}
+body section.main section.comments div[class^=comments] div.replies div.reply .comment-content {
+  display: flex;
+  flex-direction: column;
+  /* Superior bar with author information and reply function */
+}
+body section.main section.comments div[class^=comments] div.replies div.reply .comment-content .post-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  /* Reply text + icon */
+}
+body section.main section.comments div[class^=comments] div.replies div.reply .comment-content .post-info .left {
+  display: flex;
+  align-items: center;
+}
+body section.main section.comments div[class^=comments] div.replies div.reply .comment-content .post-info .left img {
+  width: 28px;
+  margin-right: 0.6rem;
+  cursor: pointer;
+}
+body section.main section.comments div[class^=comments] div.replies div.reply .comment-content .post-info .left p.profile-name {
+  font: 700 1rem "Rubik", sans-serif;
+  color: var(--dark-blue);
+  margin-right: 0.8rem;
+  cursor: pointer;
+}
+body section.main section.comments div[class^=comments] div.replies div.reply .comment-content .post-info .left p.post-date {
+  font: 400 1rem "Rubik", sans-serif;
+  color: var(--grayish-blue);
+}
+body section.main section.comments div[class^=comments] div.replies div.reply .comment-content .post-info p.reply {
+  display: flex;
+  align-items: center;
+  font: 500 1rem "Rubik", sans-serif;
+  color: var(--moderate-blue);
+  cursor: pointer;
+}
+body section.main section.comments div[class^=comments] div.replies div.reply .comment-content .post-info p.reply img {
+  width: 16px;
+  margin-right: 0.4rem;
+}
+body section.main section.comments div[class^=comments] div.replies div.reply .comment-content p.content {
   font: 400 1.025rem "Rubik", sans-serif;
   color: var(--grayish-blue);
   line-height: 1.35rem;

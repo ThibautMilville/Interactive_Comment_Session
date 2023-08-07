@@ -42,28 +42,30 @@ body {
     height: 90%;
     width: 40%;
 
-    /* Section with all the comments */
+    /* Section with all the comments and their replies */
     section.comments {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
 
-      /* One comment */
-      div.comments {
+      /* One comment and its replies */
+      div[class^="comments"] {
         display: flex;
         flex-direction: column;
+        align-items: flex-end;
         justify-content: flex-start;
         height: 100%;
         width: 100%;
-        margin-bottom: 1.15rem;
 
+        /* Comment */
         div.comment {
           display: flex;
           height: auto;
           background-color: var(--white);
           padding: 1.6rem 1.4rem;
           border-radius: 6px;
+          margin-bottom: 1.15rem;
 
           .likes {
             display: flex;
@@ -146,10 +148,111 @@ body {
             }
           }
         }
+
+        /* Reply comment */
+        div.replies {
+          display: flex;
+          flex-direction: column;
+          width: 95%;
+          height: auto;
+          border-left: 2px solid var(--light-gray);
+          margin: 0 0 1.15rem 0;
+
+          div.reply {
+            display: flex;
+            background-color: var(--white);
+            padding: 1.6rem 1.4rem;
+            border-radius: 6px;
+            margin: 0 0 0 5%;
+
+            &:not(:last-child) {
+              margin-bottom: 1.15rem;
+            }
+
+            .likes {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: space-between;
+              height: 90%;
+              width: 36px;
+              background-color: var(--very-light-gray);
+              padding: 0.7rem 0.8rem;
+              margin-right: 1.6rem;
+              border-radius: 6px;
+
+              img {
+                width: 0.75rem;
+                padding: 2px 0;
+                cursor: pointer;
+              }
+
+              p {
+                font: 500 1rem 'Rubik', sans-serif;
+                color: var(--moderate-blue);
+              }
+            }
+
+            .comment-content {
+              display: flex;
+              flex-direction: column;
+
+              /* Superior bar with author information and reply function */
+              .post-info {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 1rem;
+
+                .left {
+                  display: flex;
+                  align-items: center;
+
+                  img {
+                    width: 28px;
+                    margin-right: 0.6rem;
+                    cursor: pointer;
+                  }
+
+                  p.profile-name {
+                    font: 700 1rem 'Rubik', sans-serif;
+                    color: var(--dark-blue);
+                    margin-right: 0.8rem;
+                    cursor: pointer;
+                  }
+
+                  p.post-date {
+                    font: 400 1rem 'Rubik', sans-serif;
+                    color: var(--grayish-blue);
+                  }
+                }
+
+                /* Reply text + icon */
+                p.reply {
+                  display: flex;
+                  align-items: center;
+                  font: 500 1rem 'Rubik', sans-serif;
+                  color: var(--moderate-blue);
+                  cursor: pointer;
+
+                  img {
+                    width: 16px;
+                    margin-right: 0.4rem;
+                  }
+                }
+              }
+
+              p.content {
+                font: 400 1.025rem 'Rubik', sans-serif;
+                color: var(--grayish-blue);
+                line-height: 1.35rem;
+              }
+            }
+          }
+        }
       }
     }
-
-
 
     section.add-a-comment {
       display: flex;
