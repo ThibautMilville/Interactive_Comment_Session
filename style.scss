@@ -58,15 +58,12 @@ body {
         height: 100%;
         width: 100%;
 
-        /* Comment */
-        div.comment {
+        /* Comment and reply comment */
+        div.comment,
+        div.replies {
           display: flex;
-          height: auto;
-          background-color: var(--white);
-          padding: 1.6rem 1.4rem;
-          border-radius: 6px;
-          margin-bottom: 1.15rem;
 
+          /* Likes style */
           .likes {
             display: flex;
             flex-direction: column;
@@ -120,23 +117,53 @@ body {
                   cursor: pointer;
                 }
 
+                p.current-user {
+                  font: 400 0.8rem 'Rubik', sans-serif;
+                  background-color: var(--moderate-blue);
+                  color: var(--white);
+                  padding: 0.15rem 0.3rem;
+                  margin-right: 0.8rem;
+                  border-radius: 3px;
+                }
+
                 p.post-date {
                   font: 400 1rem 'Rubik', sans-serif;
                   color: var(--grayish-blue);
                 }
               }
 
-              /* Reply text + icon */
-              p.reply {
+              // Actions (reply, edit, delete...)
+              div.action {
                 display: flex;
                 align-items: center;
-                font: 500 1rem 'Rubik', sans-serif;
-                color: var(--moderate-blue);
-                cursor: pointer;
 
-                img {
-                  width: 16px;
-                  margin-right: 0.4rem;
+                /* Action text + icons */
+                p.reply,
+                p.edit {
+                  display: flex;
+                  align-items: center;
+                  font: 500 1rem 'Rubik', sans-serif;
+                  color: var(--moderate-blue);
+                  cursor: pointer;
+
+                  img {
+                    width: 16px;
+                    margin-right: 0.4rem;
+                  }
+                }
+
+                p.delete {
+                  display: flex;
+                  align-items: center;
+                  font: 500 1rem 'Rubik', sans-serif;
+                  color: var(--soft-red);
+                  margin-right: 1.6rem;
+                  cursor: pointer;
+
+                  img {
+                    width: 16px;
+                    margin-right: 0.4rem;
+                  }
                 }
               }
             }
@@ -149,12 +176,18 @@ body {
           }
         }
 
+        /* Comment */
+        div.comment {
+          background-color: var(--white);
+          padding: 1.6rem 1.4rem;
+          border-radius: 6px;
+          margin-bottom: 1.15rem;
+        }
+
         /* Reply comment */
         div.replies {
-          display: flex;
           flex-direction: column;
           width: 95%;
-          height: auto;
           border-left: 2px solid var(--light-gray);
           margin: 0 0 1.15rem 0;
 
@@ -168,92 +201,12 @@ body {
             &:not(:last-child) {
               margin-bottom: 1.15rem;
             }
-
-            .likes {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              justify-content: space-between;
-              height: 90%;
-              width: 36px;
-              background-color: var(--very-light-gray);
-              padding: 0.7rem 0.8rem;
-              margin-right: 1.6rem;
-              border-radius: 6px;
-
-              img {
-                width: 0.75rem;
-                padding: 2px 0;
-                cursor: pointer;
-              }
-
-              p {
-                font: 500 1rem 'Rubik', sans-serif;
-                color: var(--moderate-blue);
-              }
-            }
-
-            .comment-content {
-              display: flex;
-              flex-direction: column;
-
-              /* Superior bar with author information and reply function */
-              .post-info {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-                margin-bottom: 1rem;
-
-                .left {
-                  display: flex;
-                  align-items: center;
-
-                  img {
-                    width: 28px;
-                    margin-right: 0.6rem;
-                    cursor: pointer;
-                  }
-
-                  p.profile-name {
-                    font: 700 1rem 'Rubik', sans-serif;
-                    color: var(--dark-blue);
-                    margin-right: 0.8rem;
-                    cursor: pointer;
-                  }
-
-                  p.post-date {
-                    font: 400 1rem 'Rubik', sans-serif;
-                    color: var(--grayish-blue);
-                  }
-                }
-
-                /* Reply text + icon */
-                p.reply {
-                  display: flex;
-                  align-items: center;
-                  font: 500 1rem 'Rubik', sans-serif;
-                  color: var(--moderate-blue);
-                  cursor: pointer;
-
-                  img {
-                    width: 16px;
-                    margin-right: 0.4rem;
-                  }
-                }
-              }
-
-              p.content {
-                font: 400 1.025rem 'Rubik', sans-serif;
-                color: var(--grayish-blue);
-                line-height: 1.35rem;
-              }
-            }
           }
         }
       }
     }
 
+    /* Section with the add comment textarea and button */
     section.add-a-comment {
       display: flex;
       flex-direction: row;
@@ -327,8 +280,8 @@ body {
       }
     }
   }
+}
 
-  footer {
-    display: none;
-  }
+footer {
+  display: none;
 }
