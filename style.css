@@ -78,6 +78,17 @@ body section.main section.comments div[class^=comments] div.replies .likes img {
   width: 0.75rem;
   padding: 2px 0;
   cursor: pointer;
+  transition: filter, transform 0.25s ease-in-out;
+}
+body section.main section.comments div[class^=comments] div.comment .likes img.liked,
+body section.main section.comments div[class^=comments] div.replies .likes img.liked {
+  filter: invert(0.5) sepia(1) saturate(1000%) hue-rotate(90deg);
+  transform: scale(1.25);
+}
+body section.main section.comments div[class^=comments] div.comment .likes img.disliked,
+body section.main section.comments div[class^=comments] div.replies .likes img.disliked {
+  filter: invert(0.5) sepia(1) saturate(10000%) hue-rotate(0deg);
+  transform: scale(1.25);
 }
 body section.main section.comments div[class^=comments] div.comment .likes p,
 body section.main section.comments div[class^=comments] div.replies .likes p {
@@ -185,14 +196,14 @@ body section.main section.comments div[class^=comments] div.replies {
   border-left: 2px solid var(--light-gray);
   margin: 0 0 1.15rem 0;
 }
-body section.main section.comments div[class^=comments] div.replies div.reply {
+body section.main section.comments div[class^=comments] div.replies div[id^=reply] {
   display: flex;
   background-color: var(--white);
   padding: 1.6rem 1.4rem;
   border-radius: 6px;
   margin: 0 0 0 5%;
 }
-body section.main section.comments div[class^=comments] div.replies div.reply:not(:last-child) {
+body section.main section.comments div[class^=comments] div.replies div[id^=reply]:not(:last-child) {
   margin-bottom: 1.15rem;
 }
 body section.main section.add-a-comment {
@@ -200,7 +211,7 @@ body section.main section.add-a-comment {
   flex-direction: row;
   align-items: flex-start;
   background-color: var(--white);
-  height: 16%;
+  height: 14%;
   width: 100%;
   padding-top: 22px;
   border-radius: 6px;

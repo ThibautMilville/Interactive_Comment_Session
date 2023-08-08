@@ -80,6 +80,19 @@ body {
               width: 0.75rem;
               padding: 2px 0;
               cursor: pointer;
+              transition: filter, transform 0.25s ease-in-out;
+
+              &.liked {
+                // Filter to change the heart color to bright green
+                filter: invert(0.5) sepia(1) saturate(1000%) hue-rotate(90deg);
+                transform: scale(1.25);
+              }
+
+              &.disliked {
+                // Filter to change the heart color to bright red
+                filter: invert(0.5) sepia(1) saturate(10000%) hue-rotate(hue(#f30303));
+                transform: scale(1.25);
+              }
             }
 
             p {
@@ -191,7 +204,7 @@ body {
           border-left: 2px solid var(--light-gray);
           margin: 0 0 1.15rem 0;
 
-          div.reply {
+          div[id^="reply"] {
             display: flex;
             background-color: var(--white);
             padding: 1.6rem 1.4rem;
@@ -212,7 +225,7 @@ body {
       flex-direction: row;
       align-items: flex-start;
       background-color: var(--white);
-      height: 16%;
+      height: 14%;
       width: 100%;
       padding-top: 22px;
       border-radius: 6px;

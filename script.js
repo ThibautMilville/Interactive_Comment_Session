@@ -16,6 +16,9 @@ class JSONLoader {
         // Create the sections with the data
         this.loadComments(this.data);
         this.changePicture(this.data);
+
+        // Listen to the click on the like and dislike buttons
+        this.likeOrDislike(this.data);
       })
       .catch(error => console.error('An error has occured: ', error));
   }
@@ -39,9 +42,9 @@ class JSONLoader {
     <div id="comments${i}" class="comments">
       <div class="comment">
         <div class="likes">
-          <img src="./images/icon-plus.svg" alt="Plus icon">
+          <img src="./images/icon-plus.svg" id="like" alt="Plus icon">
           <p class="nb-likes">${data.comments[i].score}</p>
-          <img src="./images/icon-minus.svg" alt="Minus icon">
+          <img src="./images/icon-minus.svg" id="dislike" alt="Minus icon">
         </div>
         <div class="comment-content">
           <div class="post-info">
@@ -66,11 +69,11 @@ class JSONLoader {
     const comments = document.querySelector(`#comments${i}`);
     comments.innerHTML += `
     <div class="replies">
-      <div class="reply">
+      <div id="reply${i+j+1}">
         <div class="likes">
-          <img src="./images/icon-plus.svg" alt="Plus icon">
+          <img src="./images/icon-plus.svg" id="like" alt="Plus icon">
           <p class="nb-likes">${data.comments[i].replies[j].score}</p>
-          <img src="./images/icon-minus.svg" alt="Minus icon">
+          <img src="./images/icon-minus.svg" id="dislike" alt="Minus icon">
         </div>
         <div class="comment-content">
           <div class="post-info">
@@ -126,11 +129,52 @@ class JSONLoader {
 
   // Check if the current user is the same as the user who posted the comment or the reply
   checkCommentCurrentUser(data, i, j) {
-    if(data.currentUser.username === data.comments[i].user.username || data.currentUser.username === data.comments[i].replies[j].user.username) {
+    if (data.currentUser.username === data.comments[i].user.username || data.currentUser.username === data.comments[i].replies[j].user.username) {
       return true;
     } else {
       return false;
     }
+  }
+
+  // Function with an event listener to like or dislike a comment or a reply
+  likeOrDislike(data) {
+    const likes = document.querySelectorAll('.likes');
+    const currentUser = data.currentUser.username;
+
+    // For each click on the like and dislike buttons
+    likes.forEach(like => {
+      // Get the number of likes, the like and dislike buttons
+      const nbLikes = like.querySelector('.nb-likes');
+      const likeButton = like.querySelector('#like');
+      const dislikeButton = like.querySelector('#dislike');
+
+      // Get the name of the author of the comment or the reply
+      const authorComment = like.closest('.comment, [id^="reply"]').querySelector('.profile-name').innerHTML;
+
+      // Like event listener except if the current user is the same as the author of the comment or the reply
+      likeButton.addEventListener('click', () => {
+        if (!likeButton.classList.contains('liked') && currentUser !== authorComment) {
+          // Change the score in the JSON file (non-functional, need to use a server)
+          // data.comments[like.closest('[id^="comments"], [id^="reply"]').id.slice(-1)].score += 1;
+          
+          nbLikes.innerHTML = parseInt(nbLikes.innerHTML) + 1;
+          likeButton.classList.add('liked');
+          dislikeButton.classList.remove('disliked');
+        }
+      });
+
+      // Dislike event listener except if the current user is the same as the author of the comment or the reply
+      dislikeButton.addEventListener('click', () => {
+        if (!dislikeButton.classList.contains('disliked') && currentUser !== authorComment) {
+          // Change the score in the JSON file (non-functional, need to use a server)
+          // data.comments[like.closest('[id^="comments"], [id^="reply"]').id.slice(-1)].score -= 1;
+
+          nbLikes.innerHTML = parseInt(nbLikes.innerHTML) - 1;
+          dislikeButton.classList.add('disliked');
+          likeButton.classList.remove('liked');
+        }
+      });
+    });
   }
 }
 
