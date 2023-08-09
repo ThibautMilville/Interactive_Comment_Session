@@ -63,37 +63,37 @@ class JSONLoader {
           <p class="content">${data.comments[i].content}</p>
         </div>
       </div>
+      <div class="replies">
+      </div>
     </div>
     `;
   }
 
   // Create a reply
   createReply(data, i, j) {
-    const comments = document.querySelector(`#comments${i}`);
+    const comments = document.querySelector(`#comments${i} .replies`);
     comments.innerHTML += `
-    <div class="replies">
-      <div id="reply${i+j+1}">
-        <div class="likes">
-          <img src="./images/icon-plus.svg" id="like" alt="Plus icon">
-          <p class="nb-likes">${data.comments[i].replies[j].score}</p>
-          <img src="./images/icon-minus.svg" id="dislike" alt="Minus icon">
-        </div>
-        <div class="comment-content">
-          <div class="post-info">
-            <div class="left">
-              <img src="${this.checkPicture(data.comments[i].replies[j].user.image.webp, data.comments[i].replies[j].user.image.png)}" alt="picture">
-              <p class="profile-name">${data.comments[i].replies[j].user.username}</p>
-              ${this.checkCommentCurrentUser(data, i, j) ? '<p class="current-user">you</p>' : ''}
-              <p class="post-date">${data.comments[i].replies[j].createdAt}</p>
-            </div>
-            <div class="action">
-              <!-- If the current user is the same as the user who posted the comment or the reply, display the delete and edit buttons, else display the reply button -->
-              ${this.checkCommentCurrentUser(data, i, j) ? '<button class="delete"><img src="images/icon-delete.svg" alt="delete">Delete</button>' : ''}
-              ${this.checkCommentCurrentUser(data, i, j) ? '<button class="edit"><img src="images/icon-edit.svg" alt="edit">Edit</button>' : '<button class="reply"><img src="images/icon-reply.svg" alt="reply">Reply</button>'}
-            </div>
+    <div id="reply${i+j+1}">
+      <div class="likes">
+        <img src="./images/icon-plus.svg" id="like" alt="Plus icon">
+        <p class="nb-likes">${data.comments[i].replies[j].score}</p>
+        <img src="./images/icon-minus.svg" id="dislike" alt="Minus icon">
+      </div>
+      <div class="comment-content">
+        <div class="post-info">
+          <div class="left">
+            <img src="${this.checkPicture(data.comments[i].replies[j].user.image.webp, data.comments[i].replies[j].user.image.png)}" alt="picture">
+            <p class="profile-name">${data.comments[i].replies[j].user.username}</p>
+            ${this.checkCommentCurrentUser(data, i, j) ? '<p class="current-user">you</p>' : ''}
+            <p class="post-date">${data.comments[i].replies[j].createdAt}</p>
           </div>
-          <p class="content">${data.comments[i].replies[j].content}</p>
+          <div class="action">
+            <!-- If the current user is the same as the user who posted the comment or the reply, display the delete and edit buttons, else display the reply button -->
+            ${this.checkCommentCurrentUser(data, i, j) ? '<button class="delete"><img src="images/icon-delete.svg" alt="delete">Delete</button>' : ''}
+            ${this.checkCommentCurrentUser(data, i, j) ? '<button class="edit"><img src="images/icon-edit.svg" alt="edit">Edit</button>' : '<button class="reply"><img src="images/icon-reply.svg" alt="reply">Reply</button>'}
+          </div>
         </div>
+        <p class="content">${data.comments[i].replies[j].content}</p>
       </div>
     </div>
     `;
