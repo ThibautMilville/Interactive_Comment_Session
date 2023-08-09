@@ -147,34 +147,38 @@ body section.main section.comments div[class^=comments] div.replies .comment-con
   align-items: center;
   /* Action text + icons */
 }
-body section.main section.comments div[class^=comments] div.comment .comment-content .post-info div.action p.reply,
-body section.main section.comments div[class^=comments] div.comment .comment-content .post-info div.action p.edit,
-body section.main section.comments div[class^=comments] div.replies .comment-content .post-info div.action p.reply,
-body section.main section.comments div[class^=comments] div.replies .comment-content .post-info div.action p.edit {
+body section.main section.comments div[class^=comments] div.comment .comment-content .post-info div.action button.reply,
+body section.main section.comments div[class^=comments] div.comment .comment-content .post-info div.action button.edit,
+body section.main section.comments div[class^=comments] div.replies .comment-content .post-info div.action button.reply,
+body section.main section.comments div[class^=comments] div.replies .comment-content .post-info div.action button.edit {
   display: flex;
   align-items: center;
   font: 500 1rem "Rubik", sans-serif;
+  background-color: var(--white);
   color: var(--moderate-blue);
+  border: none;
   cursor: pointer;
 }
-body section.main section.comments div[class^=comments] div.comment .comment-content .post-info div.action p.reply img,
-body section.main section.comments div[class^=comments] div.comment .comment-content .post-info div.action p.edit img,
-body section.main section.comments div[class^=comments] div.replies .comment-content .post-info div.action p.reply img,
-body section.main section.comments div[class^=comments] div.replies .comment-content .post-info div.action p.edit img {
+body section.main section.comments div[class^=comments] div.comment .comment-content .post-info div.action button.reply img,
+body section.main section.comments div[class^=comments] div.comment .comment-content .post-info div.action button.edit img,
+body section.main section.comments div[class^=comments] div.replies .comment-content .post-info div.action button.reply img,
+body section.main section.comments div[class^=comments] div.replies .comment-content .post-info div.action button.edit img {
   width: 16px;
   margin-right: 0.4rem;
 }
-body section.main section.comments div[class^=comments] div.comment .comment-content .post-info div.action p.delete,
-body section.main section.comments div[class^=comments] div.replies .comment-content .post-info div.action p.delete {
+body section.main section.comments div[class^=comments] div.comment .comment-content .post-info div.action button.delete,
+body section.main section.comments div[class^=comments] div.replies .comment-content .post-info div.action button.delete {
   display: flex;
   align-items: center;
   font: 500 1rem "Rubik", sans-serif;
+  background-color: var(--white);
   color: var(--soft-red);
   margin-right: 1.6rem;
+  border: none;
   cursor: pointer;
 }
-body section.main section.comments div[class^=comments] div.comment .comment-content .post-info div.action p.delete img,
-body section.main section.comments div[class^=comments] div.replies .comment-content .post-info div.action p.delete img {
+body section.main section.comments div[class^=comments] div.comment .comment-content .post-info div.action button.delete img,
+body section.main section.comments div[class^=comments] div.replies .comment-content .post-info div.action button.delete img {
   width: 16px;
   margin-right: 0.4rem;
 }

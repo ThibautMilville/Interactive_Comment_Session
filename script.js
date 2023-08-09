@@ -85,8 +85,8 @@ class JSONLoader {
             </div>
             <div class="action">
               <!-- If the current user is the same as the user who posted the comment or the reply, display the delete and edit buttons, else display the reply button -->
-              ${this.checkCommentCurrentUser(data, i, j) ? '<p class="delete"><img src="images/icon-delete.svg" alt="delete">Delete</p>' : ''}
-              ${this.checkCommentCurrentUser(data, i, j) ? '<p class="edit"><img src="images/icon-edit.svg" alt="edit">Edit</p>' : '<p class="reply"><img src="images/icon-reply.svg" alt="reply">Reply</p>'}
+              ${this.checkCommentCurrentUser(data, i, j) ? '<button class="delete"><img src="images/icon-delete.svg" alt="delete">Delete</button>' : ''}
+              ${this.checkCommentCurrentUser(data, i, j) ? '<button class="edit"><img src="images/icon-edit.svg" alt="edit">Edit</button>' : '<button class="reply"><img src="images/icon-reply.svg" alt="reply">Reply</button>'}
             </div>
           </div>
           <p class="content">${data.comments[i].replies[j].content}</p>

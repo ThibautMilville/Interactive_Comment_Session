@@ -151,12 +151,14 @@ body {
                 align-items: center;
 
                 /* Action text + icons */
-                p.reply,
-                p.edit {
+                button.reply,
+                button.edit {
                   display: flex;
                   align-items: center;
                   font: 500 1rem 'Rubik', sans-serif;
+                  background-color: var(--white);
                   color: var(--moderate-blue);
+                  border: none;
                   cursor: pointer;
 
                   img {
@@ -165,12 +167,14 @@ body {
                   }
                 }
 
-                p.delete {
+                button.delete {
                   display: flex;
                   align-items: center;
                   font: 500 1rem 'Rubik', sans-serif;
+                  background-color: var(--white);
                   color: var(--soft-red);
                   margin-right: 1.6rem;
+                  border: none;
                   cursor: pointer;
 
                   img {
