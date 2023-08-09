@@ -1,9 +1,11 @@
 // Class to recuperate and use the data from the JSON file
 class JSONLoader {
   constructor(path) {
+    // Path of the JSON file and data
     this.path = path;
     this.data = null;
 
+    // DOM elements
     this.commentSection = document.querySelector('section.comments');
   }
 
@@ -17,8 +19,9 @@ class JSONLoader {
         this.loadComments(this.data);
         this.changePicture(this.data);
 
-        // Listen to the click on the like and dislike buttons
+        // Event listeners
         this.likeOrDislike(this.data);
+        this.showDeleteModal();
       })
       .catch(error => console.error('An error has occured: ', error));
   }
@@ -54,7 +57,7 @@ class JSONLoader {
               <p class="post-date">${data.comments[i].createdAt}</p>
             </div>
             <div class="action">
-              <p class="reply"><img src="images/icon-reply.svg" alt="reply">Reply</p>
+              <button class="reply"><img src="images/icon-reply.svg" alt="reply">Reply</button>
             </div>
           </div>
           <p class="content">${data.comments[i].content}</p>
@@ -136,6 +139,8 @@ class JSONLoader {
     }
   }
 
+  /* Event listeners */
+
   // Function with an event listener to like or dislike a comment or a reply
   likeOrDislike(data) {
     const likes = document.querySelectorAll('.likes');
@@ -174,6 +179,59 @@ class JSONLoader {
           likeButton.classList.remove('liked');
         }
       });
+    });
+  }
+
+  // Function with an event listener to show the delete modal
+  showDeleteModal() {
+    // Get the modal overlay and the delete buttons
+    const modalOverlay = document.querySelector('section.modal-overlay');
+    const deleteCommentButtons = document.querySelectorAll('div.action button.delete');
+    // For each delete button
+    deleteCommentButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Display the modal overlay with an animation
+        modalOverlay.style.display = 'flex';
+        modalOverlay.classList.add('active');
+        // Event listener to hide the modal
+        this.hideDeleteModal(modalOverlay);
+        // Event listener to delete the comment or the reply
+        this.deleteComment(button, modalOverlay);
+      });
+    });
+  }
+
+  // Function with an event listener to hide the modal when clicking on the cancel button or on the modal overlay
+  hideDeleteModal(modalOverlay) {
+    // Get the cancel button
+    const cancelButton = document.querySelector('.modal-content button.cancel');
+    // Close the modal when clicking on the modal overlay
+    modalOverlay.addEventListener('click', event => {
+      if (event.target === modalOverlay) {
+        modalOverlay.style.display = 'none';
+      }
+    });
+    // Close the modal when clicking on the cancel button
+    cancelButton.addEventListener('click', () => {
+      modalOverlay.style.display = 'none';
+    });
+  }
+
+  // Function with an event listener to delete a comment or a reply
+  deleteComment(deleteButton, modalOverlay) {
+    // Get the comment or the reply to delete and the delete button in the modal
+    const commentToDelete = deleteButton.closest('.comment, [id^="reply"]');
+    const deleteButtonModal = document.querySelector('.modal-content button.delete');
+    // Event listener to delete the comment or the reply
+    deleteButtonModal.addEventListener('click', () => {
+      // Hide the comment or the reply with an animation
+      commentToDelete.classList.add('evaporate');
+      // Delete the comment or the reply from the DOM after 2 seconds
+      setTimeout(() => {
+        commentToDelete.remove();
+      }, 2000);
+      // Hide the modal
+      modalOverlay.style.display = 'none';
     });
   }
 }

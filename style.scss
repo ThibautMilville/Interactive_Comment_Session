@@ -215,6 +215,10 @@ body {
             border-radius: 6px;
             margin: 0 0 0 5%;
 
+            &.evaporate {
+              animation: evaporation 2s ease-in-out forwards;
+            }
+
             &:not(:last-child) {
               margin-bottom: 1.15rem;
             }
@@ -296,9 +300,100 @@ body {
         }
       }
     }
+
+    /* Section for the delete modal */
+    section.modal-overlay {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+
+      &.active {
+        opacity: 0;
+        animation: fade-in 0.5s ease-in-out forwards;
+      }
+
+      div.modal-content {
+        width: 18%;
+        background-color: var(--white);
+        padding: 1.8rem 1.6rem;
+        border-radius: 6px;
+
+        h2 {
+          font: 700 1.25rem 'Rubik', sans-serif;
+          color: var(--dark-blue);
+          margin-bottom: 1.2rem;
+        }
+
+        p {
+          font: 400 0.95rem 'Rubik', sans-serif;
+          color: var(--grayish-blue);
+          line-height: 1.3rem;
+          margin-bottom: 1.2rem;
+        }
+
+        div.buttons {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          button {
+            font: 500 0.8rem 'Rubik', sans-serif;
+            text-transform: uppercase;
+            color: var(--white);
+            padding: 0.9rem 1.8rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+
+            &.cancel {
+              background-color: var(--grayish-blue);
+            }
+
+            &.delete {
+              background-color: var(--soft-red);
+            }
+
+            &:hover {
+              opacity: 0.95;
+              transform: scale(1.02);
+            }
+          }
+        }
+      }
+    }
   }
 }
 
 footer {
   display: none;
+}
+
+// Animations
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes evaporation {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
 }
