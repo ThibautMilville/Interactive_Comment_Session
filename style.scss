@@ -197,6 +197,7 @@ body {
             }
 
             textarea.content {
+              min-height: 84px;
               font: 400 1.025rem 'Rubik', sans-serif;
               color: var(--grayish-blue);
               line-height: 1.35rem;
@@ -206,6 +207,7 @@ body {
               margin-bottom: 0.8rem;
               resize: none;
               outline: none;
+              overflow: hidden;
               transition: border 0.2s ease-in-out;
 
               &::placeholder {
@@ -274,6 +276,10 @@ body {
               margin-bottom: 1.15rem;
             }
           }
+
+          div.reply-section {
+            margin: -10px 0 1.15rem 5%;
+          }
         }
 
         /* Reply section */
@@ -286,7 +292,7 @@ body {
           background-color: var(--white);
           padding: 1.6rem 1.4rem;
           border-radius: 6px;
-          margin-bottom: 1.15rem;
+          margin: -10px 0 1.15rem 0;
 
           img{
             width: 34px;
@@ -295,6 +301,7 @@ body {
 
           textarea {
             width: 100%;
+            min-height: 76px;
             color: var(--dark-blue);
             font: 400 1.0rem 'Rubik', sans-serif;
             border: 2px solid var(--light-gray);
@@ -302,6 +309,7 @@ body {
             padding: 0.6rem 1.2rem;
             resize: none;
             outline: none;
+            overflow: hidden;
             transition: border 0.2s ease-in-out;
 
             &::placeholder {
@@ -376,6 +384,7 @@ body {
           padding: 0.6rem 1.2rem;
           resize: none;
           outline: none;
+          overflow: hidden;
           transition: border 0.2s ease-in-out;
 
           &::placeholder {

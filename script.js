@@ -145,7 +145,7 @@ class JSONLoader {
     // Get the name of the user who posted the comment or the reply
     const commentUser = data.comments[i].user.username;
     const replyUser = j !== undefined ? data.comments[i].replies[j]?.user.username : undefined; // Check if "j" is defined, if not it means it is a comment and not a reply, return undefined
-    
+
     // Return true if the current user is the same as the user who posted the comment or the reply, else return false
     return data.currentUser.username === commentUser || data.currentUser.username === replyUser;
   }
@@ -164,6 +164,21 @@ class JSONLoader {
     }
     return lastId;
   }
+
+  // Resize the textarea
+  resizeTextarea() {
+    const textareas = document.querySelectorAll('textarea');
+
+    // For each textarea
+    textareas.forEach(textarea => {
+      // Resize the textarea when the user types in it
+      textarea.addEventListener('input', () => {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+      });
+    });
+  }
+
 
   /* Event listeners */
 
@@ -187,7 +202,7 @@ class JSONLoader {
         if (!likeButton.classList.contains('liked') && currentUser !== authorComment) {
           // Change the score in the JSON file (non-functional, need to use a server)
           // data.comments[like.closest('[id^="comments"], [id^="reply"]').id.slice(-1)].score += 1;
-          
+
           nbLikes.innerHTML = parseInt(nbLikes.innerHTML) + 1;
           likeButton.classList.add('liked');
           dislikeButton.classList.remove('disliked');
@@ -272,7 +287,7 @@ class JSONLoader {
         // Get the delete button
         const deleteButton = commentToEdit.querySelector('button.delete');
         // Replace the paragraph with a textarea and get it, add an update button
-        content.outerHTML = `<textarea class="content" rows="4">${content.innerHTML}</textarea>`;
+        content.outerHTML = `<textarea class="content" rows="3">${content.innerHTML}</textarea>`;
         const textarea = commentToEdit.querySelector('textarea');
         textarea.insertAdjacentHTML('afterend', '<button class="update">Update</button>');
         // Modify the style of the delete and edit buttons
@@ -282,6 +297,8 @@ class JSONLoader {
         button.disabled = true;
         deleteButton.disabled = true;
 
+        // Event listener to resize the textarea
+        this.resizeTextarea();
         // Event listener to update the comment or the reply
         this.updateComment(commentToEdit, textarea, button, deleteButton);
       });
@@ -321,10 +338,52 @@ class JSONLoader {
         const reply = commentToReplyTo.nextElementSibling;
         reply.innerHTML += `
         <img src="${this.checkPicture(this.data.currentUser.image.webp, this.data.currentUser.image.png)}" alt="picture">
-        <textarea rows="3"></textarea>
+        <textarea id="auto-resize-textarea" rows="3"></textarea>
         <button>Reply</button>
         `;
+        // Resize the textarea
+        this.resizeTextarea();
+        // Event listener to display the reply
+        this.displayReply(reply, commentToReplyTo);
       });
+    });
+  }
+
+  // Function with an event listener to display the reply
+  displayReply(reply, commentToReplyTo) {
+    // Get the reply button
+    const replyButton = reply.querySelector('button');
+    // Event listener to display the reply
+    replyButton.addEventListener('click', () => {
+      // Get the content of the reply
+      const content = reply.querySelector('textarea').value;
+      // Remove the reply section
+      reply.remove();
+      commentToReplyTo.insertAdjacentHTML('afterend', `<div class="replies"></div>`);
+      const replyZone = commentToReplyTo.nextElementSibling;
+      replyZone.innerHTML += `
+      <div id="reply${this.getLastId(this.data) + 1}">
+        <div class="likes">
+        <img src="./images/icon-plus.svg" id="like" alt="Plus icon">
+        <p class="nb-likes">0</p>
+        <img src="./images/icon-minus.svg" id="dislike" alt="Minus icon">
+      </div>
+      <div class="comment-content">
+        <div class="post-info">
+          <div class="left">
+            <img src="${this.checkPicture(this.data.currentUser.image.webp, this.data.currentUser.image.png)}" alt="picture">
+            <p class="profile-name">${this.data.currentUser.username}</p>
+            <p class="current-user">you</p>
+            <p class="post-date">${new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          </div>
+          <div class="action">
+            <button class="delete"><img src="images/icon-delete.svg" alt="delete">Delete</button>
+            <button class="edit"><img src="images/icon-edit.svg" alt="edit">Edit</button>
+          </div>
+        </div>
+        <p class="content">${content}</p>
+      </div>
+      `
     });
   }
 }

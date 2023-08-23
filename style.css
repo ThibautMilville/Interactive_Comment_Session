@@ -197,6 +197,7 @@ body section.main section.comments div[class^=comments] div.replies .comment-con
 }
 body section.main section.comments div[class^=comments] div.comment .comment-content textarea.content,
 body section.main section.comments div[class^=comments] div.replies .comment-content textarea.content {
+  min-height: 84px;
   font: 400 1.025rem "Rubik", sans-serif;
   color: var(--grayish-blue);
   line-height: 1.35rem;
@@ -206,6 +207,7 @@ body section.main section.comments div[class^=comments] div.replies .comment-con
   margin-bottom: 0.8rem;
   resize: none;
   outline: none;
+  overflow: hidden;
   transition: border 0.2s ease-in-out;
 }
 body section.main section.comments div[class^=comments] div.comment .comment-content textarea.content::-moz-placeholder, body section.main section.comments div[class^=comments] div.replies .comment-content textarea.content::-moz-placeholder {
@@ -271,6 +273,9 @@ body section.main section.comments div[class^=comments] div.replies div[id^=repl
 body section.main section.comments div[class^=comments] div.replies div[id^=reply]:not(:last-child) {
   margin-bottom: 1.15rem;
 }
+body section.main section.comments div[class^=comments] div.replies div.reply-section {
+  margin: -10px 0 1.15rem 5%;
+}
 body section.main section.comments div[class^=comments] div.reply-section {
   display: flex;
   flex-direction: row;
@@ -280,7 +285,7 @@ body section.main section.comments div[class^=comments] div.reply-section {
   background-color: var(--white);
   padding: 1.6rem 1.4rem;
   border-radius: 6px;
-  margin-bottom: 1.15rem;
+  margin: -10px 0 1.15rem 0;
 }
 body section.main section.comments div[class^=comments] div.reply-section img {
   width: 34px;
@@ -288,6 +293,7 @@ body section.main section.comments div[class^=comments] div.reply-section img {
 }
 body section.main section.comments div[class^=comments] div.reply-section textarea {
   width: 100%;
+  min-height: 76px;
   color: var(--dark-blue);
   font: 400 1rem "Rubik", sans-serif;
   border: 2px solid var(--light-gray);
@@ -295,6 +301,7 @@ body section.main section.comments div[class^=comments] div.reply-section textar
   padding: 0.6rem 1.2rem;
   resize: none;
   outline: none;
+  overflow: hidden;
   transition: border 0.2s ease-in-out;
 }
 body section.main section.comments div[class^=comments] div.reply-section textarea::-moz-placeholder {
@@ -361,6 +368,7 @@ body section.main section.add-a-comment div.textarea textarea {
   padding: 0.6rem 1.2rem;
   resize: none;
   outline: none;
+  overflow: hidden;
   transition: border 0.2s ease-in-out;
 }
 body section.main section.add-a-comment div.textarea textarea::-moz-placeholder {
