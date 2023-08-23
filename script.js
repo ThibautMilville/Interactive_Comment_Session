@@ -31,20 +31,24 @@ class JSONLoader {
   // Load the comments and replies
   loadComments(data) {
     for (let i = 0; i < data.comments.length; i++) {
-      this.createComment(data, i);
+      // Get the id of the comment
+      const commentId = data.comments[i].id;
+      this.createComment(data, i, commentId);
       // If there are replies, create them
       if (data.comments[i].replies) {
         for (let j = 0; j < data.comments[i].replies.length; j++) {
-          this.createReply(data, i, j);
+          // Get the id of the reply
+          const replyId = data.comments[i].replies[j].id;
+          this.createReply(data, i, j, commentId, replyId);
         }
       }
     }
   }
 
   // Create a comment
-  createComment(data, i) {
+  createComment(data, i, commentId) {
     this.commentSection.innerHTML += `
-    <div id="comments${i}" class="comments">
+    <div id="comments${commentId}" class="comments">
       <div class="comment">
         <div class="likes">
           <img src="./images/icon-plus.svg" id="like" alt="Plus icon">
@@ -76,10 +80,10 @@ class JSONLoader {
   }
 
   // Create a reply
-  createReply(data, i, j) {
-    const comments = document.querySelector(`#comments${i} .replies`);
+  createReply(data, i, j, commentId, replyId) {
+    const comments = document.querySelector(`#comments${commentId} .replies`);
     comments.innerHTML += `
-    <div id="reply${i+j+1}">
+    <div id="reply${replyId}">
       <div class="likes">
         <img src="./images/icon-plus.svg" id="like" alt="Plus icon">
         <p class="nb-likes">${data.comments[i].replies[j].score}</p>
@@ -313,16 +317,12 @@ class JSONLoader {
         // Get the comment or the reply to reply to
         const commentToReplyTo = button.closest('.comment, [id^="reply"]');
         // Add a reply after the comment and get it
-        commentToReplyTo.insertAdjacentHTML('afterend', '<div class="replies"></div>');
-        const replies = commentToReplyTo.nextElementSibling;
-        // Find the last id in the data
-        let lastId = this.getLastId(this.data);
-        // Add a reply in the reply section with the picture to the left, the textarea and the reply button to the right
-        replies.innerHTML += `
-        // get the last comment or reply id in data
-        <div id="reply${lastId+1}">
-          <img src="${this.checkPicture(this.data.currentUser.image.webp, this.data.currentUser.image.png)}" alt="picture">
-        </div>
+        commentToReplyTo.insertAdjacentHTML('afterend', '<div class="reply-section"></div>');
+        const reply = commentToReplyTo.nextElementSibling;
+        reply.innerHTML += `
+        <img src="${this.checkPicture(this.data.currentUser.image.webp, this.data.currentUser.image.png)}" alt="picture">
+        <textarea rows="3"></textarea>
+        <button>Reply</button>
         `;
       });
     });
