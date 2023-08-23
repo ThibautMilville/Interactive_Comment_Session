@@ -359,8 +359,14 @@ class JSONLoader {
       const content = reply.querySelector('textarea').value;
       // Remove the reply section
       reply.remove();
-      commentToReplyTo.insertAdjacentHTML('afterend', `<div class="replies"></div>`);
-      const replyZone = commentToReplyTo.nextElementSibling;
+      // Define the reply zone and add the reply
+      let replyZone;
+      if(commentToReplyTo.closest('.replies') === null) {
+        commentToReplyTo.closest('.comment').insertAdjacentHTML('afterend', '<div class="replies"></div>');
+        replyZone = commentToReplyTo.closest('.comment').nextElementSibling;
+      } else {
+        replyZone = commentToReplyTo.closest('.replies');
+      }
       replyZone.innerHTML += `
       <div id="reply${this.getLastId(this.data) + 1}">
         <div class="likes">
