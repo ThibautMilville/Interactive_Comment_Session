@@ -56,9 +56,11 @@ class JSONLoader {
               <p class="profile-name">${data.comments[i].user.username}</p>
               <p class="post-date">${data.comments[i].createdAt}</p>
             </div>
-            <div class="action">
-              <button class="reply"><img src="images/icon-reply.svg" alt="reply">Reply</button>
-            </div>
+          <div class="action">
+            <!-- If the current user is the same as the user who posted the comment or the reply, display the delete and edit buttons, else display the reply button -->
+            ${this.checkCommentCurrentUser(data, i) ? '<button class="delete"><img src="images/icon-delete.svg" alt="delete">Delete</button>' : ''}
+            ${this.checkCommentCurrentUser(data, i) ? '<button class="edit"><img src="images/icon-edit.svg" alt="edit">Edit</button>' : '<button class="reply"><img src="images/icon-reply.svg" alt="reply">Reply</button>'}
+          </div>
           </div>
           <p class="content">${data.comments[i].content}</p>
         </div>
@@ -132,12 +134,14 @@ class JSONLoader {
 
   // Check if the current user is the same as the user who posted the comment or the reply
   checkCommentCurrentUser(data, i, j) {
-    if (data.currentUser.username === data.comments[i].user.username || data.currentUser.username === data.comments[i].replies[j].user.username) {
-      return true;
-    } else {
-      return false;
-    }
+    // Get the name of the user who posted the comment or the reply
+    const commentUser = data.comments[i].user.username;
+    const replyUser = j !== undefined ? data.comments[i].replies[j]?.user.username : undefined; // Check if "j" is defined, if not it means it is a comment and not a reply, return undefined
+    
+    // Return true if the current user is the same as the user who posted the comment or the reply, else return false
+    return data.currentUser.username === commentUser || data.currentUser.username === replyUser;
   }
+    
 
   /* Event listeners */
 
@@ -233,6 +237,12 @@ class JSONLoader {
       // Hide the modal
       modalOverlay.style.display = 'none';
     });
+  }
+
+  // Function with an event listener to edit a comment or a reply
+  editComment() {
+    // Get the edit buttons
+    const editButtons = document.querySelectorAll('div.action button.edit');
   }
 }
 
