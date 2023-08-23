@@ -23,6 +23,7 @@ class JSONLoader {
         this.likeOrDislike(this.data);
         this.showDeleteModal();
         this.editComment();
+        this.addReply();
       })
       .catch(error => console.error('An error has occured: ', error));
   }
@@ -66,8 +67,10 @@ class JSONLoader {
           <p class="content">${data.comments[i].content}</p>
         </div>
       </div>
-      <div class="replies">
-      </div>
+      ${data.comments[i].replies != '' ? `
+        <div class="replies">
+        </div>
+        ` : ''}
     </div>
     `;
   }
@@ -283,6 +286,35 @@ class JSONLoader {
       // Active the delete and edit buttons
       button.disabled = false;
       deleteButton.disabled = false;
+    });
+  }
+
+  // Function to add a reply
+  addReply() {
+    // Get the reply button
+    const replyButtons = document.querySelectorAll('div.action button.reply');
+    // For each reply button
+    replyButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Get the comment or the reply to reply to
+        const commentToReplyTo = button.closest('.comment, [id^="reply"]');
+        // Get the delete and edit buttons
+        const deleteButton = commentToReplyTo.querySelector('button.delete');
+        const editButton = commentToReplyTo.querySelector('button.edit');
+        // Replace the reply button with a textarea and get it, add a reply button
+        button.outerHTML = `<textarea class="content" rows="4"></textarea>`;
+        const textarea = commentToReplyTo.querySelector('textarea');
+        textarea.insertAdjacentHTML('afterend', '<button class="reply">Reply</button>');
+        // Modify the style of the delete and edit buttons
+        deleteButton.style.opacity = '0.6';
+        editButton.style.opacity = '0.6';
+        // Inactive the delete and edit buttons
+        deleteButton.disabled = true;
+        editButton.disabled = true;
+
+        // Event listener to add the reply
+        this.addReply(commentToReplyTo, textarea, deleteButton, editButton);
+      });
     });
   }
 }

@@ -412,4 +412,10 @@ footer {
     opacity: 0;
     transform: translateY(-100%);
   }
+}
+@media (max-width: 375px) {
+  body section.main {
+    width: 90%;
+    padding: 1.5rem 0;
+  }
 }/*# sourceMappingURL=style.css.map */
