@@ -229,14 +229,12 @@ class JSONLoader {
     const deleteButtonModal = document.querySelector('.modal-content button.delete');
     // Event listener to delete the comment or the reply
     deleteButtonModal.addEventListener('click', () => {
-      // Hide the comment or the reply with an animation
+      // Hide the modal, then the comment with an animation and delete it from the DOM after 2 seconds
+      modalOverlay.style.display = 'none';
       commentToDelete.classList.add('evaporate');
-      // Delete the comment or the reply from the DOM after 2 seconds
       setTimeout(() => {
         commentToDelete.remove();
       }, 2000);
-      // Hide the modal
-      modalOverlay.style.display = 'none';
     });
   }
 
@@ -253,7 +251,7 @@ class JSONLoader {
         // Get the delete button
         const deleteButton = commentToEdit.querySelector('button.delete');
         // Replace the paragraph with a textarea and get it, add an update button
-        content.outerHTML = `<textarea class="content" rows="3">${content.innerHTML}</textarea>`;
+        content.outerHTML = `<textarea class="content" rows="4">${content.innerHTML}</textarea>`;
         const textarea = commentToEdit.querySelector('textarea');
         textarea.insertAdjacentHTML('afterend', '<button class="update">Update</button>');
         // Modify the style of the delete and edit buttons
@@ -262,7 +260,29 @@ class JSONLoader {
         // Inactive the delete and edit buttons
         button.disabled = true;
         deleteButton.disabled = true;
+
+        // Event listener to update the comment or the reply
+        this.updateComment(commentToEdit, textarea, button, deleteButton);
       });
+    });
+  }
+
+  // Function with an event listener to update a comment or a reply
+  updateComment(commentToEdit, textarea, button, deleteButton) {
+    // Get the update button
+    const updateButton = commentToEdit.querySelector('button.update');
+    // Event listener to update the comment or the reply
+    updateButton.addEventListener('click', () => {
+      // Replace the textarea with a paragraph and get it, remove the update button
+      textarea.outerHTML = `<p class="content">${textarea.value}</p>`;
+      const content = commentToEdit.querySelector('p.content');
+      updateButton.remove();
+      // Modify the style of the delete and edit buttons
+      button.style.opacity = '1';
+      deleteButton.style.opacity = '1';
+      // Active the delete and edit buttons
+      button.disabled = false;
+      deleteButton.disabled = false;
     });
   }
 }

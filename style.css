@@ -103,6 +103,7 @@ body section.main section.comments div[class^=comments] div.replies .comment-con
   display: flex;
   flex-direction: column;
   width: 100%;
+  overflow-wrap: anywhere;
   /* Superior bar with author information and reply function */
   /* Content + update button */
 }
