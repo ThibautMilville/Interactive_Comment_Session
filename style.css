@@ -256,7 +256,7 @@ body section.main section.comments div[class^=comments] div.comment {
 }
 body section.main section.comments div[class^=comments] div.replies {
   flex-direction: column;
-  width: 95%;
+  width: 100%;
   border-left: 2px solid var(--light-gray);
   margin: 0 0 1.15rem 0;
 }

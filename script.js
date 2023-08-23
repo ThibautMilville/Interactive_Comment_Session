@@ -383,7 +383,7 @@ class JSONLoader {
         </div>
         <p class="content">${content}</p>
       </div>
-      `
+      `;
     });
   }
 }
