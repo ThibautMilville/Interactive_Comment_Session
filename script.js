@@ -146,6 +146,20 @@ class JSONLoader {
     return data.currentUser.username === commentUser || data.currentUser.username === replyUser;
   }
 
+  // Get the last id in the data
+  getLastId(data) {
+    let lastId = 0;
+    for (let i = 0; i < data.comments.length; i++) {
+      if (data.comments[i].replies) {
+        for (let j = 0; j < data.comments[i].replies.length; j++) {
+          if (data.comments[i].replies[j].id > lastId) {
+            lastId = data.comments[i].replies[j].id;
+          }
+        }
+      }
+    }
+    return lastId;
+  }
 
   /* Event listeners */
 
@@ -298,22 +312,18 @@ class JSONLoader {
       button.addEventListener('click', () => {
         // Get the comment or the reply to reply to
         const commentToReplyTo = button.closest('.comment, [id^="reply"]');
-        // Get the delete and edit buttons
-        const deleteButton = commentToReplyTo.querySelector('button.delete');
-        const editButton = commentToReplyTo.querySelector('button.edit');
-        // Replace the reply button with a textarea and get it, add a reply button
-        button.outerHTML = `<textarea class="content" rows="4"></textarea>`;
-        const textarea = commentToReplyTo.querySelector('textarea');
-        textarea.insertAdjacentHTML('afterend', '<button class="reply">Reply</button>');
-        // Modify the style of the delete and edit buttons
-        deleteButton.style.opacity = '0.6';
-        editButton.style.opacity = '0.6';
-        // Inactive the delete and edit buttons
-        deleteButton.disabled = true;
-        editButton.disabled = true;
-
-        // Event listener to add the reply
-        this.addReply(commentToReplyTo, textarea, deleteButton, editButton);
+        // Add a reply after the comment and get it
+        commentToReplyTo.insertAdjacentHTML('afterend', '<div class="replies"></div>');
+        const replies = commentToReplyTo.nextElementSibling;
+        // Find the last id in the data
+        let lastId = this.getLastId(this.data);
+        // Add a reply in the reply section with the picture to the left, the textarea and the reply button to the right
+        replies.innerHTML += `
+        // get the last comment or reply id in data
+        <div id="reply${lastId+1}">
+          <img src="${this.checkPicture(this.data.currentUser.image.webp, this.data.currentUser.image.png)}" alt="picture">
+        </div>
+        `;
       });
     });
   }
