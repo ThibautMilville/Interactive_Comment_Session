@@ -22,6 +22,7 @@ class JSONLoader {
         // Event listeners
         this.likeOrDislike(this.data);
         this.showDeleteModal();
+        this.editComment();
       })
       .catch(error => console.error('An error has occured: ', error));
   }
@@ -141,7 +142,7 @@ class JSONLoader {
     // Return true if the current user is the same as the user who posted the comment or the reply, else return false
     return data.currentUser.username === commentUser || data.currentUser.username === replyUser;
   }
-    
+
 
   /* Event listeners */
 
@@ -243,6 +244,26 @@ class JSONLoader {
   editComment() {
     // Get the edit buttons
     const editButtons = document.querySelectorAll('div.action button.edit');
+    // For each edit button
+    editButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Get the comment or the reply to edit and the content of it
+        const commentToEdit = button.closest('.comment, [id^="reply"]');
+        const content = commentToEdit.querySelector('p.content');
+        // Get the delete button
+        const deleteButton = commentToEdit.querySelector('button.delete');
+        // Replace the paragraph with a textarea and get it, add an update button
+        content.outerHTML = `<textarea class="content" rows="3">${content.innerHTML}</textarea>`;
+        const textarea = commentToEdit.querySelector('textarea');
+        textarea.insertAdjacentHTML('afterend', '<button class="update">Update</button>');
+        // Modify the style of the delete and edit buttons
+        button.style.opacity = '0.6';
+        deleteButton.style.opacity = '0.6';
+        // Inactive the delete and edit buttons
+        button.disabled = true;
+        deleteButton.disabled = true;
+      });
+    });
   }
 }
 
