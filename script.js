@@ -207,6 +207,11 @@ class JSONLoader {
           nbLikes.innerHTML = parseInt(nbLikes.innerHTML) + 1;
           likeButton.classList.add('liked');
           dislikeButton.classList.remove('disliked');
+        } 
+        else if (likeButton.classList.contains('liked') && currentUser !== authorComment) {
+          // Remove the like if the like button is clicked again
+          nbLikes.innerHTML = parseInt(nbLikes.innerHTML) - 1;
+          likeButton.classList.remove('liked');
         }
       });
 
@@ -219,6 +224,11 @@ class JSONLoader {
           nbLikes.innerHTML = parseInt(nbLikes.innerHTML) - 1;
           dislikeButton.classList.add('disliked');
           likeButton.classList.remove('liked');
+        }
+        else if (dislikeButton.classList.contains('disliked') && currentUser !== authorComment) {
+          // Remove the dislike if the dislike button is clicked again
+          nbLikes.innerHTML = parseInt(nbLikes.innerHTML) + 1;
+          dislikeButton.classList.remove('disliked');
         }
       });
     });
