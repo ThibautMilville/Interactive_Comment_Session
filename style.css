@@ -249,6 +249,7 @@ body section.main section.comments div[class^=comments] div.replies .comment-con
   background-color: hsla(238, 40%, 52%, 0.6);
 }
 body section.main section.comments div[class^=comments] div.comment {
+  width: 100%;
   background-color: var(--white);
   padding: 1.6rem 1.4rem;
   border-radius: 6px;

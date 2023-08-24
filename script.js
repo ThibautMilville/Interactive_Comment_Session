@@ -24,6 +24,7 @@ class JSONLoader {
         this.showDeleteModal();
         this.editComment();
         this.addReply();
+        this.addComment();
       })
       .catch(error => console.error('An error has occured: ', error));
   }
@@ -176,16 +177,6 @@ class JSONLoader {
         textarea.style.height = 'auto';
         textarea.style.height = textarea.scrollHeight + 'px';
       });
-    });
-  }
-
-  // Add a comment
-  addComment() {
-    // Get the comment button
-    const commentButton = document.querySelector('button.sending-button');
-    // Event listener to add a comment
-    commentButton.addEventListener('click', () => {
-      
     });
   }
 
@@ -400,6 +391,45 @@ class JSONLoader {
         <p class="content">${content}</p>
       </div>
       `;
+    });
+  }
+
+  // Add a comment
+  addComment() {
+    // Get the comment button
+    const commentButton = document.querySelector('button.sending-button');
+    // Event listener to add a comment
+    commentButton.addEventListener('click', () => {
+      // Get the content of the comment
+      const content = document.querySelector('textarea#comment').value;
+      // Get the comment section and add the comment
+      this.commentSection.innerHTML += `
+      <div id="comments${this.getLastId(this.data) + 1}" class="comments">
+        <div class="comment">
+          <div class="likes">
+            <img src="./images/icon-plus.svg" id="like" alt="Plus icon">
+            <p class="nb-likes">0</p>
+            <img src="./images/icon-minus.svg" id="dislike" alt="Minus icon">
+          </div>
+          <div class="comment-content">
+            <div class="post-info">
+              <div class="left">
+                <img src="${this.checkPicture(this.data.currentUser.image.webp, this.data.currentUser.image.png)}" alt="picture">
+                <p class="profile-name">${this.data.currentUser.username}</p>
+                <p class="post-date">${new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+              </div>
+            <div class="action">
+              <button class="delete"><img src="images/icon-delete.svg" alt="delete">Delete</button>
+              <button class="edit"><img src="images/icon-edit.svg" alt="edit">Edit</button>
+            </div>
+            </div>
+            <p class="content">${content}</p>
+          </div>
+        </div>
+      </div>
+      `;
+      // Reset the textarea
+      document.querySelector('textarea#comment').value = '';
     });
   }
 }
