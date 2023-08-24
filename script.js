@@ -179,6 +179,16 @@ class JSONLoader {
     });
   }
 
+  // Add a comment
+  addComment() {
+    // Get the comment button
+    const commentButton = document.querySelector('button.sending-button');
+    // Event listener to add a comment
+    commentButton.addEventListener('click', () => {
+      
+    });
+  }
+
 
   /* Event listeners */
 

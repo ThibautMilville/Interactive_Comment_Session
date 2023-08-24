@@ -274,6 +274,7 @@ body section.main section.comments div[class^=comments] div.replies div[id^=repl
   margin-bottom: 1.15rem;
 }
 body section.main section.comments div[class^=comments] div.replies div.reply-section {
+  width: auto;
   margin: -10px 0 1.15rem 5%;
 }
 body section.main section.comments div[class^=comments] div.reply-section {
