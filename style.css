@@ -148,47 +148,6 @@ body section.main section.comments div[class^=comments] div.replies .comment-con
   font: 400 1rem "Rubik", sans-serif;
   color: var(--grayish-blue);
 }
-body section.main section.comments div[class^=comments] div.comment .comment-content .post-info div.action,
-body section.main section.comments div[class^=comments] div.replies .comment-content .post-info div.action {
-  display: flex;
-  align-items: center;
-  /* Action text + icons */
-}
-body section.main section.comments div[class^=comments] div.comment .comment-content .post-info div.action button.reply,
-body section.main section.comments div[class^=comments] div.comment .comment-content .post-info div.action button.edit,
-body section.main section.comments div[class^=comments] div.replies .comment-content .post-info div.action button.reply,
-body section.main section.comments div[class^=comments] div.replies .comment-content .post-info div.action button.edit {
-  display: flex;
-  align-items: center;
-  font: 500 1rem "Rubik", sans-serif;
-  background-color: var(--white);
-  color: var(--moderate-blue);
-  border: none;
-  cursor: pointer;
-}
-body section.main section.comments div[class^=comments] div.comment .comment-content .post-info div.action button.reply img,
-body section.main section.comments div[class^=comments] div.comment .comment-content .post-info div.action button.edit img,
-body section.main section.comments div[class^=comments] div.replies .comment-content .post-info div.action button.reply img,
-body section.main section.comments div[class^=comments] div.replies .comment-content .post-info div.action button.edit img {
-  width: 16px;
-  margin-right: 0.4rem;
-}
-body section.main section.comments div[class^=comments] div.comment .comment-content .post-info div.action button.delete,
-body section.main section.comments div[class^=comments] div.replies .comment-content .post-info div.action button.delete {
-  display: flex;
-  align-items: center;
-  font: 500 1rem "Rubik", sans-serif;
-  background-color: var(--white);
-  color: var(--soft-red);
-  margin-right: 1.6rem;
-  border: none;
-  cursor: pointer;
-}
-body section.main section.comments div[class^=comments] div.comment .comment-content .post-info div.action button.delete img,
-body section.main section.comments div[class^=comments] div.replies .comment-content .post-info div.action button.delete img {
-  width: 16px;
-  margin-right: 0.4rem;
-}
 body section.main section.comments div[class^=comments] div.comment .comment-content p.content,
 body section.main section.comments div[class^=comments] div.replies .comment-content p.content {
   font: 400 1.025rem "Rubik", sans-serif;
@@ -247,6 +206,47 @@ body section.main section.comments div[class^=comments] div.replies .comment-con
 body section.main section.comments div[class^=comments] div.comment .comment-content button.update:focus,
 body section.main section.comments div[class^=comments] div.replies .comment-content button.update:focus {
   background-color: hsla(238, 40%, 52%, 0.6);
+}
+body section.main section.comments div[class^=comments] div.comment div.action,
+body section.main section.comments div[class^=comments] div.replies div.action {
+  display: flex;
+  align-items: center;
+  /* Action text + icons */
+}
+body section.main section.comments div[class^=comments] div.comment div.action button.reply,
+body section.main section.comments div[class^=comments] div.comment div.action button.edit,
+body section.main section.comments div[class^=comments] div.replies div.action button.reply,
+body section.main section.comments div[class^=comments] div.replies div.action button.edit {
+  display: flex;
+  align-items: center;
+  font: 500 1rem "Rubik", sans-serif;
+  background-color: var(--white);
+  color: var(--moderate-blue);
+  border: none;
+  cursor: pointer;
+}
+body section.main section.comments div[class^=comments] div.comment div.action button.reply img,
+body section.main section.comments div[class^=comments] div.comment div.action button.edit img,
+body section.main section.comments div[class^=comments] div.replies div.action button.reply img,
+body section.main section.comments div[class^=comments] div.replies div.action button.edit img {
+  width: 16px;
+  margin-right: 0.4rem;
+}
+body section.main section.comments div[class^=comments] div.comment div.action button.delete,
+body section.main section.comments div[class^=comments] div.replies div.action button.delete {
+  display: flex;
+  align-items: center;
+  font: 500 1rem "Rubik", sans-serif;
+  background-color: var(--white);
+  color: var(--soft-red);
+  margin-right: 1.6rem;
+  border: none;
+  cursor: pointer;
+}
+body section.main section.comments div[class^=comments] div.comment div.action button.delete img,
+body section.main section.comments div[class^=comments] div.replies div.action button.delete img {
+  width: 16px;
+  margin-right: 0.4rem;
 }
 body section.main section.comments div[class^=comments] div.comment {
   width: 100%;
@@ -494,5 +494,28 @@ footer {
   body section.main {
     width: 90%;
     padding: 1.5rem 0;
+  }
+  body section.main section.comments div[class^=comments] div.comment, body section.main section.comments div[class^=comments] div.replies {
+    flex-direction: column;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.8rem;
+  }
+  body section.main section.comments div[class^=comments] div.comment div.likes-and-actions, body section.main section.comments div[class^=comments] div.replies div.likes-and-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.8rem;
+  }
+  body section.main section.comments div[class^=comments] div.comment div.likes-and-actions div.likes, body section.main section.comments div[class^=comments] div.replies div.likes-and-actions div.likes {
+    flex-direction: row;
+    width: 90px;
+    height: 36px;
+  }
+  body section.main section.comments div[class^=comments] div.replies div[id^=reply] {
+    flex-direction: column;
+  }
+  body section.main section.comments div[class^=comments] div.replies div[id^=reply]:not(:last-child) {
+    margin-bottom: 0.8rem;
   }
 }/*# sourceMappingURL=style.css.map */

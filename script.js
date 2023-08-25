@@ -25,6 +25,7 @@ class JSONLoader {
         this.editComment();
         this.addReply();
         this.addComment();
+        this.moveButtons();
       })
       .catch(error => console.error('An error has occured: ', error));
   }
@@ -207,7 +208,7 @@ class JSONLoader {
           nbLikes.innerHTML = parseInt(nbLikes.innerHTML) + 1;
           likeButton.classList.add('liked');
           dislikeButton.classList.remove('disliked');
-        } 
+        }
         else if (likeButton.classList.contains('liked') && currentUser !== authorComment) {
           // Remove the like if the like button is clicked again
           nbLikes.innerHTML = parseInt(nbLikes.innerHTML) - 1;
@@ -372,7 +373,7 @@ class JSONLoader {
       reply.remove();
       // Define the reply zone and add the reply
       let replyZone;
-      if(commentToReplyTo.closest('.replies') === null) {
+      if (commentToReplyTo.closest('.replies') === null) {
         commentToReplyTo.closest('.comment').insertAdjacentHTML('afterend', '<div class="replies"></div>');
         replyZone = commentToReplyTo.closest('.comment').nextElementSibling;
       } else {
@@ -441,6 +442,23 @@ class JSONLoader {
       // Reset the textarea
       document.querySelector('textarea#comment').value = '';
     });
+  }
+
+  // If the screen size is less or equal to 375px, move the action buttons to the right of the likes
+  moveButtons() {
+    if (window.innerWidth <= 375) {
+      // Create a div at the end of the comment or the reply and move the likes and action buttons in it
+      const comments = document.querySelectorAll('.comment, [id^="reply"]');
+      comments.forEach(comment => {
+        const likes = comment.querySelector('.likes');
+        const action = comment.querySelector('.action');
+        // Create a div and move the likes and action buttons in it
+        comment.insertAdjacentHTML('beforeend', '<div class="likes-and-actions"></div>');
+        const buttons = comment.querySelector('.likes-and-actions');
+        buttons.appendChild(likes);
+        buttons.appendChild(action);
+      });
+    }
   }
 }
 
