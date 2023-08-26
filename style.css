@@ -519,6 +519,9 @@ footer {
   body section.main section.comments div[class^=comments] div.comment div.likes-and-actions div.likes p, body section.main section.comments div[class^=comments] div.replies div.likes-and-actions div.likes p {
     font: 500 0.9rem "Rubik", sans-serif;
   }
+  body section.main section.comments div[class^=comments] div.comment div.likes-and-actions div.action button, body section.main section.comments div[class^=comments] div.replies div.likes-and-actions div.action button {
+    font: 500 0.9rem "Rubik", sans-serif;
+  }
   body section.main section.comments div[class^=comments] div.replies div[id^=reply] {
     flex-direction: column;
   }
