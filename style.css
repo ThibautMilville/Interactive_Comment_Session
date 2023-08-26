@@ -500,6 +500,10 @@ footer {
     padding: 0.8rem 1rem;
     margin-bottom: 0.8rem;
   }
+  body section.main section.comments div[class^=comments] div.comment div.comment-content p.content, body section.main section.comments div[class^=comments] div.replies div.comment-content p.content {
+    font: 400 0.9rem "Rubik", sans-serif;
+    line-height: 1.2rem;
+  }
   body section.main section.comments div[class^=comments] div.comment div.likes-and-actions, body section.main section.comments div[class^=comments] div.replies div.likes-and-actions {
     display: flex;
     flex-direction: row;
@@ -511,6 +515,9 @@ footer {
     flex-direction: row;
     width: 90px;
     height: 36px;
+  }
+  body section.main section.comments div[class^=comments] div.comment div.likes-and-actions div.likes p, body section.main section.comments div[class^=comments] div.replies div.likes-and-actions div.likes p {
+    font: 500 0.9rem "Rubik", sans-serif;
   }
   body section.main section.comments div[class^=comments] div.replies div[id^=reply] {
     flex-direction: column;

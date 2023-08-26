@@ -544,6 +544,14 @@ footer {
             padding: 0.8rem 1rem;
             margin-bottom: 0.8rem;
 
+            div.comment-content {
+
+              p.content {
+                font: 400 0.9rem 'Rubik', sans-serif;
+                line-height: 1.2rem;
+              }
+            }
+
             div.likes-and-actions {
               display: flex;
               flex-direction: row;
@@ -555,6 +563,10 @@ footer {
                 flex-direction: row;
                 width: 90px;
                 height: 36px;
+
+                p {
+                  font: 500 0.9rem 'Rubik', sans-serif;
+                }
               }
             }
           }
