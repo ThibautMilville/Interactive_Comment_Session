@@ -150,7 +150,7 @@ body section.main section.comments div[class^=comments] div.replies .comment-con
 }
 body section.main section.comments div[class^=comments] div.comment .comment-content p.content,
 body section.main section.comments div[class^=comments] div.replies .comment-content p.content {
-  font: 400 1.025rem "Rubik", sans-serif;
+  font: 400 1rem "Rubik", sans-serif;
   color: var(--grayish-blue);
   line-height: 1.35rem;
 }
