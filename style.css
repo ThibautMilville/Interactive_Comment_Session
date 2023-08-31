@@ -35,6 +35,7 @@ body section.main {
   min-height: 100vh;
   height: 100%;
   width: 40%;
+  margin: 24px 0;
   /* Section with all the comments and their replies */
   /* Section with the add comment textarea and button */
   /* Section for the delete modal */
@@ -469,7 +470,20 @@ body section.main section.modal-overlay div.modal-content div.buttons button:hov
 }
 
 footer {
-  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: var(--white);
+  padding: 0.8rem 0;
+}
+footer a {
+  color: var(--grayish-blue);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+footer a:hover {
+  color: var(--moderate-blue);
 }
 
 @keyframes fade-in {
@@ -495,39 +509,60 @@ footer {
     width: 90%;
     padding: 1.5rem 0;
   }
-  body section.main section.comments div[class^=comments] div.comment, body section.main section.comments div[class^=comments] div.replies {
+  body section.main section.comments div[class^=comments] div.comment,
+  body section.main section.comments div[class^=comments] div.replies {
     flex-direction: column;
     padding: 0.8rem 1rem;
   }
-  body section.main section.comments div[class^=comments] div.comment div.comment-content p.content, body section.main section.comments div[class^=comments] div.replies div.comment-content p.content {
+  body section.main section.comments div[class^=comments] div.comment div.comment-content p.content,
+  body section.main section.comments div[class^=comments] div.replies div.comment-content p.content {
     font: 400 0.9rem "Rubik", sans-serif;
     line-height: 1.2rem;
   }
-  body section.main section.comments div[class^=comments] div.comment div.likes-and-actions, body section.main section.comments div[class^=comments] div.replies div.likes-and-actions {
+  body section.main section.comments div[class^=comments] div.comment div.likes-and-actions,
+  body section.main section.comments div[class^=comments] div.replies div.likes-and-actions {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     margin-top: 0.8rem;
   }
-  body section.main section.comments div[class^=comments] div.comment div.likes-and-actions div.likes, body section.main section.comments div[class^=comments] div.replies div.likes-and-actions div.likes {
+  body section.main section.comments div[class^=comments] div.comment div.likes-and-actions div.likes,
+  body section.main section.comments div[class^=comments] div.replies div.likes-and-actions div.likes {
     flex-direction: row;
     width: 90px;
     height: 36px;
   }
-  body section.main section.comments div[class^=comments] div.comment div.likes-and-actions div.likes p, body section.main section.comments div[class^=comments] div.replies div.likes-and-actions div.likes p {
+  body section.main section.comments div[class^=comments] div.comment div.likes-and-actions div.likes p,
+  body section.main section.comments div[class^=comments] div.replies div.likes-and-actions div.likes p {
     font: 500 0.9rem "Rubik", sans-serif;
   }
-  body section.main section.comments div[class^=comments] div.comment div.likes-and-actions div.action button, body section.main section.comments div[class^=comments] div.replies div.likes-and-actions div.action button {
+  body section.main section.comments div[class^=comments] div.comment div.likes-and-actions div.action button,
+  body section.main section.comments div[class^=comments] div.replies div.likes-and-actions div.action button {
     font: 500 0.9rem "Rubik", sans-serif;
   }
   body section.main section.comments div[class^=comments] div.comment.existing-replies {
-    margin-bottom: 0rem;
+    margin-bottom: 0.8rem;
+  }
+  body section.main section.comments div[class^=comments] div.replies {
+    padding: 0 1rem;
   }
   body section.main section.comments div[class^=comments] div.replies div[id^=reply] {
     flex-direction: column;
   }
   body section.main section.comments div[class^=comments] div.replies div[id^=reply]:not(:last-child) {
     margin-bottom: 0.8rem;
+  }
+  body section.main section.add-a-comment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  body section.main section.add-a-comment div.textarea {
+    width: 90%;
+  }
+  body footer {
+    font: 400 0.9rem "Rubik", sans-serif;
   }
 }/*# sourceMappingURL=style.css.map */

@@ -26,6 +26,7 @@ class JSONLoader {
         this.addReply();
         this.addComment();
         this.moveButtons();
+        this.moveToMobileContainer();
       })
       .catch(error => console.error('An error has occured: ', error));
   }
@@ -458,6 +459,20 @@ class JSONLoader {
         buttons.appendChild(likes);
         buttons.appendChild(action);
       });
+    }
+  }
+
+  // If the screen size is less or equal to 375px, move the picture and the button to the mobile container in the add-a-comment section
+  moveToMobileContainer() {
+    if (window.innerWidth <= 375) {
+      // Get the picture and the button
+      const picture = document.querySelector('section.add-a-comment div.picture');
+      const button = document.querySelector('section.add-a-comment div.button');
+      // Get the mobile container
+      const mobileContainer = document.querySelector('section.add-a-comment div.mobile-container');
+      // Move the picture and the button in the mobile container
+      mobileContainer.appendChild(picture);
+      mobileContainer.appendChild(button);
     }
   }
 }

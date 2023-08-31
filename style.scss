@@ -42,6 +42,7 @@ body {
     min-height: 100vh;
     height: 100%;
     width: 40%;
+    margin: 24px 0;
 
     /* Section with all the comments and their replies */
     section.comments {
@@ -502,7 +503,22 @@ body {
 }
 
 footer {
-  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: var(--white);
+  padding: 0.8rem 0;
+
+  a {
+    color: var(--grayish-blue);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: var(--moderate-blue);
+    }
+  }
 }
 
 // Animations
@@ -539,7 +555,8 @@ footer {
 
         div[class^=comments] {
 
-          div.comment, div.replies {
+          div.comment,
+          div.replies {
             flex-direction: column;
             padding: 0.8rem 1rem;
 
@@ -577,11 +594,15 @@ footer {
             }
           }
 
-          div.comment.existing-replies {
-            margin-bottom: 0rem;
+          div.comment {
+
+            &.existing-replies {
+              margin-bottom: 0.8rem;
+            }
           }
 
           div.replies {
+            padding: 0 1rem;
 
             div[id^=reply] {
               flex-direction: column;
@@ -593,6 +614,25 @@ footer {
           }
         }
       }
+
+      section.add-a-comment {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        div.textarea {
+          width: 90%;
+        }
+
+        div.mobile-container {
+          
+        }
+      }
+    }
+
+    footer {
+      font: 400 0.9rem 'Rubik', sans-serif;
     }
   }
 }
