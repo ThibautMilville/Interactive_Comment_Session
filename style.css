@@ -514,6 +514,15 @@ footer a:hover {
     flex-direction: column;
     padding: 0.8rem 1rem;
   }
+  body section.main section.comments div[class^=comments] div.comment div.comment-content div.post-info div.left p.profile-name, body section.main section.comments div[class^=comments] div.comment div.comment-content div.post-info div.left p.post-date,
+  body section.main section.comments div[class^=comments] div.replies div.comment-content div.post-info div.left p.profile-name,
+  body section.main section.comments div[class^=comments] div.replies div.comment-content div.post-info div.left p.post-date {
+    font-size: 0.9rem;
+  }
+  body section.main section.comments div[class^=comments] div.comment div.comment-content div.post-info div.left p.current-user,
+  body section.main section.comments div[class^=comments] div.replies div.comment-content div.post-info div.left p.current-user {
+    font-size: 0.7rem;
+  }
   body section.main section.comments div[class^=comments] div.comment div.comment-content p.content,
   body section.main section.comments div[class^=comments] div.replies div.comment-content p.content {
     font: 400 0.9rem "Rubik", sans-serif;

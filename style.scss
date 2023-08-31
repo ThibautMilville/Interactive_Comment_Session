@@ -562,6 +562,20 @@ footer {
 
             div.comment-content {
 
+              div.post-info {
+
+                div.left {
+
+                  p.profile-name, p.post-date {
+                    font-size: 0.9rem;
+                  }
+
+                  p.current-user {
+                    font-size: 0.7rem;
+                  }
+                }
+              }
+
               p.content {
                 font: 400 0.9rem 'Rubik', sans-serif;
                 line-height: 1.2rem;
