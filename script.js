@@ -51,7 +51,7 @@ class JSONLoader {
   createComment(data, i, commentId) {
     this.commentSection.innerHTML += `
     <div id="comments${commentId}" class="comments">
-      <div class="comment">
+      <div class="comment ${data.comments[i].replies != '' ? `existing-replies` : ''}">
         <div class="likes">
           <img src="./images/icon-plus.svg" id="like" alt="Plus icon">
           <p class="nb-likes">${data.comments[i].score}</p>

@@ -542,7 +542,6 @@ footer {
           div.comment, div.replies {
             flex-direction: column;
             padding: 0.8rem 1rem;
-            margin-bottom: 0.8rem;
 
             div.comment-content {
 
@@ -576,6 +575,10 @@ footer {
                 }
               }
             }
+          }
+
+          div.comment.existing-replies {
+            margin-bottom: 0rem;
           }
 
           div.replies {
