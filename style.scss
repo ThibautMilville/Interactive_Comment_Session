@@ -358,7 +358,7 @@ body {
       align-items: flex-start;
       background-color: var(--white);
       width: 100%;
-      padding: 22px 0;
+      padding: 1.6rem 0;
       border-radius: 6px;
 
       div.picture {
@@ -620,13 +620,35 @@ footer {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        padding: 1rem 0;
 
         div.textarea {
-          width: 90%;
+          width: 94%;
+          margin-bottom: 1rem;
         }
 
         div.mobile-container {
-          
+          width: 94%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          div.picture {
+            width: 50%;
+            display: flex;
+            justify-content: flex-start;
+
+            img {
+              width: 28px;
+              height: 28px;
+            }
+          }
+
+          div.button {
+            width: 50%;
+            display: flex;
+            justify-content: flex-end;
+          }
         }
       }
     }
