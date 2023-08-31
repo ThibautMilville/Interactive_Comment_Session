@@ -593,6 +593,9 @@ footer a:hover {
     display: flex;
     justify-content: flex-end;
   }
+  body section.main section.modal-overlay div.modal-content {
+    width: 90%;
+  }
   body footer {
     font: 400 0.9rem "Rubik", sans-serif;
   }
