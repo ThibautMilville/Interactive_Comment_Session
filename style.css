@@ -504,7 +504,7 @@ footer a:hover {
     transform: translateY(-100%);
   }
 }
-@media (max-width: 375px) {
+@media (max-width: 1440px) {
   body section.main {
     width: 90%;
     padding: 1.5rem 0;
@@ -554,7 +554,7 @@ footer a:hover {
     margin-bottom: 0.8rem;
   }
   body section.main section.comments div[class^=comments] div.replies {
-    padding: 0 1rem;
+    padding: 0;
   }
   body section.main section.comments div[class^=comments] div.replies div[id^=reply] {
     flex-direction: column;

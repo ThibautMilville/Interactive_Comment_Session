@@ -545,7 +545,7 @@ footer {
 }
 
 // Media queries - Mobile
-@media (max-width: 375px) {
+@media (max-width: 1440px) {
   body {
     section.main {
       width: 90%;
@@ -616,7 +616,7 @@ footer {
           }
 
           div.replies {
-            padding: 0 1rem;
+            padding: 0;
 
             div[id^=reply] {
               flex-direction: column;

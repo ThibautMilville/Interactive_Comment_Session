@@ -447,7 +447,7 @@ class JSONLoader {
 
   // If the screen size is less or equal to 375px, move the action buttons to the right of the likes
   moveButtons() {
-    if (window.innerWidth <= 375) {
+    if (window.innerWidth <= 1440) {
       // Create a div at the end of the comment or the reply and move the likes and action buttons in it
       const comments = document.querySelectorAll('.comment, [id^="reply"]');
       comments.forEach(comment => {
@@ -464,7 +464,7 @@ class JSONLoader {
 
   // If the screen size is less or equal to 375px, move the picture and the button to the mobile container in the add-a-comment section
   moveToMobileContainer() {
-    if (window.innerWidth <= 375) {
+    if (window.innerWidth <= 1440) {
       // Get the picture and the button
       const picture = document.querySelector('section.add-a-comment div.picture');
       const button = document.querySelector('section.add-a-comment div.button');
